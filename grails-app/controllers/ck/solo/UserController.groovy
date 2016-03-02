@@ -8,6 +8,16 @@ class UserController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    def birthdays() {
+        Date date = new Date().parse('dd.MM.yyyy', '11.04.1978')
+        def month = date.getAt(Calendar.MONTH) + 1
+        def users = []
+        users = User.where {
+            bmonth == month
+        }.list()
+        [users : users]
+    }
+
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond User.list(params), model:[userCount: User.count()]
