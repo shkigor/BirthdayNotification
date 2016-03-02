@@ -11,6 +11,9 @@ class User {
     String email
     Date dateCreated
     Date dateUpdated
+    Integer bdate
+    Integer bmonth
+    Integer byear
 
     static constraints = {
         lastName blank: false
@@ -19,7 +22,17 @@ class User {
         birthday nullable: false
         phone nullable: true
         organization nullable: true
-        email email: true, nullable: false
+        email email: true, nullable: true
+        bdate nullable: true
+        bmonth nullable: true
+        byear nullable: true
+    }
+
+    static mapping = {
+        bdate formula: 'WEEK(BIRTHDAY)'    //provide the exact column name of the date field
+        bmonth formula: 'MONTH(BIRTHDAY)'
+        byear formula: 'YEAR(BIRTHDAY)'
+
     }
 
     @Override
