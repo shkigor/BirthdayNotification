@@ -9,9 +9,9 @@ class BootStrap {
     }
 
     private void createSampleData() {
-        User igor = new User(lastName: 'Шкляр', firstName: 'Игорь', birthday: new Date().parse('dd.MM.yyyy', '11.12.1978'), dateCreated: new Date('02/02/2016'), dateUpdated: new Date('02/02/2016'), bdate: 11, bmonth: 12, byear: 1978).save(failOnError: true)
-        User inna = new User(lastName: 'Шкляр', firstName: 'Инна', birthday: new Date().parse('dd.MM.yyyy', '23.04.1985'), dateCreated: new Date('02/02/2016'), dateUpdated: new Date('02/02/2016'), bdate: 23, bmonth: 04, byear: 1985).save(failOnError: true)
-        User user01 = new User(lastName: 'Иванов', firstName: 'Иван', birthday: new Date('03/02/1985'), dateCreated: new Date('02/02/2016'), dateUpdated: new Date('02/02/2016'), bdate: 3, bmonth: 2, byear: 1985).save(failOnError: true)
-        User user02 = new User(lastName: 'Сидоров', firstName: 'Степан', birthday: new Date('03/02/1980'), dateCreated: new Date('02/02/2016'), dateUpdated: new Date('02/02/2016'), bdate: 3, bmonth: 2, byear: 1985).save(failOnError: true)
+        User igor = new User(lastName: 'Шкляр', firstName: 'Игорь', birthday: new Date().parse('dd.MM.yyyy', '11.12.1978'), dateCreated: new Date('02/02/2016'), dateUpdated: new Date('02/02/2016')).save(failOnError: true)
+        User inna = new User(lastName: 'Шкляр', firstName: 'Инна', birthday: new Date().parse('dd.MM.yyyy', '23.04.1985'), dateCreated: new Date('02/02/2016'), dateUpdated: new Date('02/02/2016')).save(failOnError: true)
+        User user01 = new User(lastName: 'Иванов', firstName: 'Иван', birthday: new Date('03/02/1985'), dateCreated: new Date('02/02/2016'), dateUpdated: new Date('02/02/2016')).save(failOnError: true)
+        User user02 = new User(lastName: 'Сидоров', firstName: 'Степан', birthday: new Date('03/02/1980'), dateCreated: new Date('02/02/2016'), dateUpdated: new Date('02/02/2016')).save(failOnError: true)
     }
 }
