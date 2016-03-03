@@ -1,7 +1,8 @@
 package ck.solo
 
-import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+
+import static org.springframework.http.HttpStatus.*
 
 @Transactional(readOnly = true)
 class PersonController {
@@ -11,11 +12,11 @@ class PersonController {
     def birthdays() {
         Date date = new Date().parse('dd.MM.yyyy', '11.04.1978')
         def month = date.getAt(Calendar.MONTH) + 1
-        def users = []
-        users = User.where {
+        def persons = []
+        persons = Person.where {
             bmonth == month
         }.list()
-        [users : users]
+        [persons : persons]
     }
 
     def index(Integer max) {
