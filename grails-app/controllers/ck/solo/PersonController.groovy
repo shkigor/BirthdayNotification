@@ -2,25 +2,17 @@ package ck.solo
 
 import grails.transaction.Transactional
 
-import java.time.LocalDate
-import java.time.Month
-
 import static org.springframework.http.HttpStatus.*
 
 @Transactional(readOnly = true)
 class PersonController {
 
+    def personService
+
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def birthdays() {
-        LocalDate localDate = LocalDate.now()
-        LocalDate specificDate = LocalDate.of(1985, Month.DECEMBER, 11)
-        Integer dayOfMonth = specificDate.getDayOfMonth()
-        Integer month = specificDate.getMonth().getValue()
-        List<Person> persons = []
-        persons = Person.where {
-            bday == dayOfMonth && bmonth == month
-        }.list()
+        List<Person> persons = personService.getListOfBirthdaysToday()
         [persons : persons]
     }
 
