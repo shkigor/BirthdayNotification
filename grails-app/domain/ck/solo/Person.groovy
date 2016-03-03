@@ -1,6 +1,6 @@
 package ck.solo
 
-class User {
+class Person {
 
     String lastName
     String firstName

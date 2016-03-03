@@ -3,9 +3,9 @@ package ck.solo
 import grails.test.mixin.*
 import spock.lang.*
 
-@TestFor(UserController)
-@Mock(User)
-class UserControllerSpec extends Specification {
+@TestFor(PersonController)
+@Mock(Person)
+class PersonControllerSpec extends Specification {
 
     def populateValidParams(params) {
         assert params != null
@@ -21,8 +21,8 @@ class UserControllerSpec extends Specification {
         controller.index()
 
         then: "The model is correct"
-        !model.userList
-        model.userCount == 0
+        !model.personList
+        model.personCount == 0
     }
 
     void "Test the create action returns the correct model"() {
@@ -30,7 +30,7 @@ class UserControllerSpec extends Specification {
         controller.create()
 
         then: "The model is correctly created"
-        model.user != null
+        model.person != null
     }
 
     void "Test the save action correctly persists an instance"() {
@@ -38,25 +38,25 @@ class UserControllerSpec extends Specification {
         when: "The save action is executed with an invalid instance"
         request.contentType = FORM_CONTENT_TYPE
         request.method = 'POST'
-        def user = new User()
-        user.validate()
-        controller.save(user)
+        def person = new Person()
+        person.validate()
+        controller.save(person)
 
         then: "The create view is rendered again with the correct model"
-        model.user != null
+        model.person != null
         view == 'create'
 
         when: "The save action is executed with a valid instance"
         response.reset()
         populateValidParams(params)
-        user = new User(params)
+        person = new Person(params)
 
-        controller.save(user)
+        controller.save(person)
 
         then: "A redirect is issued to the show action"
-        response.redirectedUrl == '/user/show/1'
+        response.redirectedUrl == '/person/show/1'
         controller.flash.message != null
-        User.count() == 1
+        Person.count() == 1
     }
 
     void "Test that the show action returns the correct model"() {
@@ -68,11 +68,11 @@ class UserControllerSpec extends Specification {
 
         when: "A domain instance is passed to the show action"
         populateValidParams(params)
-        def user = new User(params)
-        controller.show(user)
+        def person = new Person(params)
+        controller.show(person)
 
         then: "A model is populated containing the domain instance"
-        model.user == user
+        model.person == person
     }
 
     void "Test that the edit action returns the correct model"() {
@@ -84,11 +84,11 @@ class UserControllerSpec extends Specification {
 
         when: "A domain instance is passed to the edit action"
         populateValidParams(params)
-        def user = new User(params)
-        controller.edit(user)
+        def person = new Person(params)
+        controller.edit(person)
 
         then: "A model is populated containing the domain instance"
-        model.user == user
+        model.person == person
     }
 
     void "Test the update action performs an update on a valid domain instance"() {
@@ -98,28 +98,28 @@ class UserControllerSpec extends Specification {
         controller.update(null)
 
         then: "A 404 error is returned"
-        response.redirectedUrl == '/user/index'
+        response.redirectedUrl == '/person/index'
         flash.message != null
 
         when: "An invalid domain instance is passed to the update action"
         response.reset()
-        def user = new User()
-        user.validate()
-        controller.update(user)
+        def person = new Person()
+        person.validate()
+        controller.update(person)
 
         then: "The edit view is rendered again with the invalid instance"
         view == 'edit'
-        model.user == user
+        model.person == person
 
         when: "A valid domain instance is passed to the update action"
         response.reset()
         populateValidParams(params)
-        user = new User(params).save(flush: true)
-        controller.update(user)
+        person = new Person(params).save(flush: true)
+        controller.update(person)
 
         then: "A redirect is issued to the show action"
-        user != null
-        response.redirectedUrl == "/user/show/$user.id"
+        person != null
+        response.redirectedUrl == "/person/show/$person.id"
         flash.message != null
     }
 
@@ -130,23 +130,23 @@ class UserControllerSpec extends Specification {
         controller.delete(null)
 
         then: "A 404 is returned"
-        response.redirectedUrl == '/user/index'
+        response.redirectedUrl == '/person/index'
         flash.message != null
 
         when: "A domain instance is created"
         response.reset()
         populateValidParams(params)
-        def user = new User(params).save(flush: true)
+        def person = new Person(params).save(flush: true)
 
         then: "It exists"
-        User.count() == 1
+        Person.count() == 1
 
         when: "The domain instance is passed to the delete action"
-        controller.delete(user)
+        controller.delete(person)
 
         then: "The instance is deleted"
-        User.count() == 0
-        response.redirectedUrl == '/user/index'
+        Person.count() == 0
+        response.redirectedUrl == '/person/index'
         flash.message != null
     }
 }
