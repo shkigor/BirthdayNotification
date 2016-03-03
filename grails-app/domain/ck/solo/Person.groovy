@@ -11,7 +11,7 @@ class Person {
     String email
     Date dateCreated
     Date dateUpdated
-    Integer bdate
+    Integer bday
     Integer bmonth
     Integer byear
 
@@ -23,13 +23,13 @@ class Person {
         phone nullable: true
         organization nullable: true
         email email: true, nullable: true
-        bdate nullable: true
+        bday nullable: true
         bmonth nullable: true
         byear nullable: true
     }
 
     static mapping = {
-        bdate formula: 'WEEK(BIRTHDAY)'    //provide the exact column name of the date field
+        bday formula: 'DAY(BIRTHDAY)'    //provide the exact column name of the date field
         bmonth formula: 'MONTH(BIRTHDAY)'
         byear formula: 'YEAR(BIRTHDAY)'
 

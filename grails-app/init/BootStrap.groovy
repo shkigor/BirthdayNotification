@@ -1,5 +1,4 @@
 import ck.solo.Person
-import ck.solo.User
 
 class BootStrap {
 

@@ -24,8 +24,8 @@
 <div id="allBirthdays">
     <g:each in="${persons}" var="person">
         <div class="personEntry">
-            <div class="postText">
-                ${person.firstName}
+            <div class="personText">
+                ${person.lastName} ${person.firstName}
             </div>
 
             <div class="personDate">
