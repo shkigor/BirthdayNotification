@@ -1,5 +1,6 @@
 package ck.solo
 
+import grails.plugin.springsecurity.annotation.Secured
 import grails.transaction.Transactional
 
 import static org.springframework.http.HttpStatus.*
@@ -11,6 +12,7 @@ class PersonController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured(['ROLE_ADMIN'])
     def birthdays() {
         List<Person> persons = personService.getListOfBirthdaysToday()
         [persons : persons]
